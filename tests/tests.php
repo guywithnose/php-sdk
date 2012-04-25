@@ -407,7 +407,7 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
       $this->fail('Should not get here.');
     } catch(FacebookApiException $e) {
       // means the server got the access token and didn't like it
-      $error_msg_start = 'OAuthException: Error validating access token:';
+      $error_msg_start = 'OAuthException: Error invalidating access token:';
       $this->assertTrue(strpos((string) $e, $error_msg_start) === 0,
                         'Expect the token validation error message.');
     }
@@ -692,7 +692,7 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
       // this test is failing as the graph call is returning the wrong
       // error message
       $this->assertTrue(strpos($e->getMessage(),
-        'Requires session when calling from a desktop app') !== false,
+        'An access token is required to request this resource') !== false,
         'Incorrect exception type thrown when trying to gain ' .
         'insights for desktop app without a user access token.');
     } catch (Exception $e) {
