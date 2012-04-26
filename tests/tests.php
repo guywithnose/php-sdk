@@ -689,8 +689,6 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
       $response = $facebook->api('/' . self::APP_ID . '/insights');
       $this->fail('Desktop applications need a user token for insights.');
     } catch (FacebookApiException $e) {
-      // this test is failing as the graph call is returning the wrong
-      // error message
       $this->assertTrue(strpos($e->getMessage(),
         'An access token is required to request this resource') !== false,
         'Incorrect exception type thrown when trying to gain ' .
